@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Serwerownia";
+}
+<div ng-app="serverApp">
+	<section ng-controller="clientCtrl">
+		<div class="col-md-4">
+			<p>Dodaj urządzenie klienta:</p>
+
+			<form ng-submit="post(data)" id="submit-new">
+			    <label>Wprowadź nazwę klienta: </label> <input ng-model="data.Name" type="text" required></input> <br/>
+			    <label>Wprowadź email klienta: </label> <input ng-model="data.Email" type="email" required></input> <br/>
+			    <label>Wprowadź domenę klienta: </label> <input ng-model="data.Domain" type="text" required></input> <br/>
+			    <button type="submit" id="submit-new" class="btn btn-primary" >Wyślij</button>
+			</form>
+		</div>
+
+		<div class="col-md-4">
+			<label>Lista:</label> 		<button type="button" class="btn btn-warning" ng-click="get()">Pobierz listę urządzeń</button> 
+			</br>
+			<ul>
+				<li ng-repeat="data in list">
+					<b>id. {{data.Id}}</b>
+					<element ng-bind="data.Name"></element> /
+					<element ng-bind="data.Email"></element> /
+					<element ng-bind="data.Domain"></element>
+					<button class="btn btn-info" ng-click="getOne(data.Id)">Wybierz</button> 
+				</li>
+			</ul>
+		</div>
+
+		<div class="col-md-4">
+			<p>Wybrany:</p>
+			<form ng-submit="put(one)" id="submit-choosen">
+				<b>id. {{one.Id}}</b> <br/>
+				<label>Wprowadź nazwę klienta: </label> <input ng-model="one.Name" type="text" required></input> <br/>
+				<label>Wprowadź email klienta: </label> <input ng-model="one.Email" type="email" required></input> <br/>
+				<label>Wprowadź domenę klienta: </label> <input ng-model="one.Domain" type="text" required></input> <br/>
+				<button class="btn btn-success" type="submit" id="submit-choosen">Edytuj</button>
+			</form>
+			<button  class="btn btn-danger" ng-click="delete(one.Id)">Usuń</button> 
+		</div>
+	</section>
+</div>
